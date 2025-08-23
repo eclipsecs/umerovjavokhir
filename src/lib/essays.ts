@@ -13,7 +13,7 @@ export interface Essay {
 export const essays: Essay[] = [
   {
     id: "1",
-    title: "On Writing Well",
+    title: "On Writing Well 1",
     slug: "on-writing-well",
     content: `# On Writing Well
 

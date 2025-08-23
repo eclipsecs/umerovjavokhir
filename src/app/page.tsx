@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { getPublishedEssays, formatDate } from "@/lib/essays";
+import HighlightedText from "../components/HighlightedText";
+import { RoughNotation } from "react-rough-notation";
+import React from "react";
+
 
 export default function HomePage() {
   const essays = getPublishedEssays();
@@ -9,7 +13,9 @@ export default function HomePage() {
       {/* Header */}
       <header className="mb-16 text-center">
         <h1 className="text-4xl font-bold tracking-tight mb-4">
-          Essays & Thoughts
+          <HighlightedText type="box" color="#f59e0b">
+            Essays & Thoughts
+          </HighlightedText>
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           A collection of thoughts on writing, learning, productivity, and life.
