@@ -19,7 +19,7 @@ export const essays: Essay[] = [
 
 Writing is thinking on paper. Anyone who thinks clearly should be able to write clearly—about any subject at all.
 
-## The Art of Clarity
+## The Art of Clarity and Persuasion
 
 Good writing is not a matter of inspiration but of hard work. It requires thinking through your ideas, organizing them logically, and expressing them in the simplest possible terms. The goal is not to impress readers with your vocabulary but to communicate your thoughts as clearly as possible.
 
