@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 // @ts-expect-error
-import { Link } from "next/link";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
