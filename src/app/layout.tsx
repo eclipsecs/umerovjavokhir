@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// @ts-ignore
-import Link from "next/link";
+// @ts-expect-error
+import { Link } from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
