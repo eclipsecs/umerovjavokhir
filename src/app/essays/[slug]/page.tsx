@@ -3,26 +3,34 @@ import { notFound } from "next/navigation";
 import { getEssay, getPublishedEssays, formatDate } from "@/lib/essays";
 import ReactMarkdown from "react-markdown";
 
-interface EssayPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+// Helper to estimate reading time (words/200 rounded up)
+function estimateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
 }
 
+interface EssayPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+// For static generation: return all slugs
 export async function generateStaticParams() {
   const essays = getPublishedEssays();
-  return essays.map((essay) => ({
-    slug: essay.slug,
-  }));
+  return essays.map((essay) => ({ slug: essay.slug }));
 }
 
+// Page component
 export default async function EssayPage({ params }: EssayPageProps) {
-  const { slug } = await params;
+  const { slug } = params;
   const essay = getEssay(slug);
 
   if (!essay) {
     notFound();
   }
+
+  const readingTime = estimateReadingTime(essay.content);
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
@@ -32,17 +40,16 @@ export default async function EssayPage({ params }: EssayPageProps) {
           href="/"
           className="text-sm text-muted-foreground hover:text-primary transition-colors"
         >
-          ← Back to essays
+          Home
         </Link>
       </nav>
-
       {/* Essay Header */}
       <header className="mb-12">
         <div className="mb-6">
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-            <time>{formatDate(essay.publishedAt)}</time>
+            <time>{formatDate(essay.publishedDate)}</time>
             <span>•</span>
-            <span>{essay.readingTime} min read</span>
+            <span>{readingTime} min read</span>
           </div>
 
           <h1 className="text-4xl font-bold tracking-tight mb-4">
@@ -50,7 +57,7 @@ export default async function EssayPage({ params }: EssayPageProps) {
           </h1>
 
           <div className="flex gap-2">
-            {essay.tags.map((tag) => (
+            {essay.tags && essay.tags.map((tag: string) => (
               <span
                 key={tag}
                 className="px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-md"
@@ -118,7 +125,7 @@ export default async function EssayPage({ params }: EssayPageProps) {
       </article>
 
       {/* Essay Footer */}
-      <footer className="mt-16 pt-8 border-t border-border">
+      <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-foreground">
             <p>Thanks for reading!</p>
