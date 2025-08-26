@@ -2,17 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEssay, getPublishedEssays, formatDate } from "@/lib/essays";
 import ReactMarkdown from "react-markdown";
+import type { PageProps } from "next";
 
 // Helper to estimate reading time (words/200 rounded up)
 function estimateReadingTime(text: string): number {
   const words = text.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 200));
-}
-
-interface EssayPageProps {
-  params: {
-    slug: string;
-  };
 }
 
 // For static generation: return all slugs
@@ -22,8 +17,8 @@ export async function generateStaticParams() {
 }
 
 // Page component
-export default async function EssayPage({ params }: EssayPageProps) {
-  const { slug } = params;
+export default async function EssayPage(props: PageProps<"/essays/[slug]">) {
+  const { slug } = await props.params;
   const essay = getEssay(slug);
 
   if (!essay) {
