@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEssay, getPublishedEssays, formatDate } from "@/lib/essays";
 import ReactMarkdown from "react-markdown";
-import type { PageProps } from "next";
+
 
 // Helper to estimate reading time (words/200 rounded up)
 function estimateReadingTime(text: string): number {
