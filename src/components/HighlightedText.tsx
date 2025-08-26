@@ -10,7 +10,7 @@ interface HighlightedTextProps {
 export default function HighlightedText({
   children,
   type,
-  color = "#f59e0b",
+  color = "#0b26f5ff",
 }: HighlightedTextProps) {
   return (
     <RoughNotation type={type} color={color} show>

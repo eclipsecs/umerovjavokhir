@@ -1,4 +1,6 @@
 import Link from "next/link";
+import HighlightedText from "@/components/HighlightedText";
+import { getEssay } from "@/lib/essays";
 
 export default function RSSPage() {
   return (
