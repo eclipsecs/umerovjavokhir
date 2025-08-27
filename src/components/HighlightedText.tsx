@@ -1,35 +1,32 @@
-"use client";
+import { ReactNode } from "react";
 
-import { useEffect, useState } from "react";
+interface HighlightedTextProps {
+  children: ReactNode;
+  type?: "box" | "underline";
+  color?: "blue" | "green" | "red" | "yellow";
+}
 
-export default function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(false);
+export default function HighlightedText({ 
+  children, 
+  type = "box",
+  color = "blue"
+}: HighlightedTextProps) {
+  
+  const typeClasses = {
+    box: "bg-yellow-200 dark:bg-yellow-600 px-1",
+    underline: "underline"
+  };
 
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.documentElement.classList.add("dark");
-      setDarkMode(true);
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    if (darkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-      setDarkMode(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-      setDarkMode(true);
-    }
+  const colorClasses = {
+    blue: "text-blue-600 dark:text-blue-400",
+    green: "text-green-600 dark:text-green-400", 
+    red: "text-red-600 dark:text-red-400",
+    yellow: "text-yellow-600 dark:text-yellow-400"
   };
 
   return (
-    <button
-      onClick={toggleDarkMode}
-      className="px-3 py-2 rounded-md border bg-gray-200 dark:bg-gray-800 dark:text-white"
-    >
-      {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-    </button>
+    <span className={`font-bold ${typeClasses[type]} ${colorClasses[color]}`}>
+      {children}
+    </span>
   );
 }

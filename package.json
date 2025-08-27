@@ -1,43 +1,27 @@
 {
-  "name": "nextjs-shadcn",
+  "name": "ESSAY-PUBLISHING-WEBSITE",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0 --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx tsc --noEmit && next lint",
-    "format": "bunx biome format --write"
+    "lint": "next lint"
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.475.0",
-    "next": "^15.5.0",
-    "next-themes": "^0.4.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-markdown": "^10.1.0",
-    "react-rough-notation": "^1.0.5",
-    "rough-notation": "^0.5.1",
-    "same-runtime": "^0.0.1",
-    "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "next": "14.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@eslint/eslintrc": "^3.3.1",
-    "@types/node": "^20.19.11",
-    "@types/react": "^18.3.24",
-    "@types/react-dom": "^18.3.7",
-    "autoprefixer": "^10.4.21",
-    "eslint": "^9.27.0",
-    "eslint-config-next": "15.1.7",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.9.2"
-  },
-  "engines": {
-  "node": "22.x"
-}
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.0.0",
+    "postcss": "^8.0.0",
+    "tailwindcss": "^3.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "14.0.0"
+  }
 }

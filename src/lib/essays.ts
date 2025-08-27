@@ -6,9 +6,10 @@ export type Essay = {
   slug: string;
   content: string;
   excerpt?: string;
-  publishedDate: string; // ISO date, e.g. "2024-01-15"
+  publishedDate: string;
   tags?: string[];
-  published?: boolean; // default true if omitted
+  published?: boolean;
+  readingTime?: number;
 };
 
 export const essays: Essay[] = [
@@ -125,6 +126,12 @@ The goal is not to avoid mistakes but to make them quickly and learn from them e
   },
 ];
 
+export function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  return Math.ceil(words / wordsPerMinute);
+}
+
 export function getEssay(slug: string): Essay | undefined {
   return essays.find((e) => e.slug === slug && e.published !== false);
 }
@@ -135,7 +142,11 @@ export function getPublishedEssays(): Essay[] {
     .sort(
       (a, b) =>
         new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
-    );
+    )
+    .map(essay => ({
+      ...essay,
+      readingTime: calculateReadingTime(essay.content)
+    }));
 }
 
 export function formatDate(dateString: string): string {
